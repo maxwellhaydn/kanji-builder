@@ -22,7 +22,7 @@ const CharacterBuildingBlockList = ({ buildingBlocks }) => {
     const categories = Object.keys(buildingBlocksByCategory).sort();
 
     return (
-        <div id="character-building-block-list">
+        <div className="character-building-block-list">
             {categories.map(category => {
                  const items = buildingBlocksByCategory[category].map(item =>
                      <CharacterBuildingBlock
