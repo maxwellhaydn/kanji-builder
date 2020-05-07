@@ -7,10 +7,10 @@ import CharacterEditorPanel from './CharacterEditorPanel';
  * An editor and a list of building blocks that can be used to build a
  * character.
  */
-const CharacterBuilder = ({ buildingBlocks }) => {
+const CharacterBuilder = ({ buildingBlocks, editorWidth, editorHeight }) => {
     return (
         <div className="character-builder">
-            <CharacterEditorPanel />
+            <CharacterEditorPanel width={editorWidth} height={editorHeight} />
             <CharacterBuildingBlockList buildingBlocks={buildingBlocks} />
         </div>
     );
