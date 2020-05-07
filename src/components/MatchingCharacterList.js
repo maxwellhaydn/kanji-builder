@@ -3,7 +3,7 @@ import React from 'react';
 import MatchingCharacter from './MatchingCharacter';
 
 /**
- * A character that matches what was created in the character builder.
+ * A list of characters that match what was created in the character builder.
  */
 const MatchingCharacterList = ({ matches }) => {
     return (
