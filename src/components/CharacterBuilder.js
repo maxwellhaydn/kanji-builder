@@ -2,6 +2,7 @@ import React from 'react';
 
 import CharacterBuildingBlockList from './CharacterBuildingBlockList';
 import CharacterEditorPanel from './CharacterEditorPanel';
+
 /**
  * An editor and a list of building blocks that can be used to build a
  * character.
