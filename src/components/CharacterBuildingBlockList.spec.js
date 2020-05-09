@@ -35,16 +35,17 @@ describe('CharacterBuildingBlockList', function() {
             <CharacterBuildingBlockList buildingBlocks={data} />
         );
 
-        expect(wrapper).to.contain([
-            <CharacterBuildingBlockCategory name="Blocks" />,
-            <CharacterBuildingBlock imageSrc="quux" />,
-            <CharacterBuildingBlock imageSrc="bat" />,
-            <CharacterBuildingBlockCategory name="Feet" />,
-            <CharacterBuildingBlock imageSrc="bar" />,
-            <CharacterBuildingBlockCategory name="Hats" />,
-            <CharacterBuildingBlock imageSrc="foo" />,
-            <CharacterBuildingBlock imageSrc="baz" />
-        ]);
+        ['Blocks', 'Feet', 'Hats'].forEach(category => {
+            expect(wrapper).to.contain(
+                <CharacterBuildingBlockCategory name={category} />
+            );
+        });
+
+        data.forEach(buildingBlock => {
+            expect(wrapper).to.contain(
+                <CharacterBuildingBlock imageSrc={buildingBlock.image} />
+            );
+        });
     });
 
 });

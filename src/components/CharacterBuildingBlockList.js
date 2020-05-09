@@ -1,5 +1,8 @@
 import React from 'react';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 
+import './CharacterBuildingBlockList.css';
 import CharacterBuildingBlock from './CharacterBuildingBlock';
 import CharacterBuildingBlockCategory from './CharacterBuildingBlockCategory';
 
@@ -22,7 +25,10 @@ const CharacterBuildingBlockList = ({ buildingBlocks }) => {
     const categories = Object.keys(buildingBlocksByCategory).sort();
 
     return (
-        <div className="character-building-block-list">
+        <Accordion
+            className="character-building-block-list"
+            defaultActiveKey={categories[0]}
+        >
             {categories.map(category => {
                  const items = buildingBlocksByCategory[category].map(item =>
                      <CharacterBuildingBlock
@@ -32,13 +38,17 @@ const CharacterBuildingBlockList = ({ buildingBlocks }) => {
                  );
 
                  return (
-                     <React.Fragment key={category}>
-                         <CharacterBuildingBlockCategory name={category} />
-                         {items}
-                     </React.Fragment>
+                     <Card key={category}>
+                         <Accordion.Toggle as={Card.Header} eventKey={category}>
+                             <CharacterBuildingBlockCategory name={category} />
+                         </Accordion.Toggle>
+                         <Accordion.Collapse eventKey={category}>
+                             <Card.Body>{items}</Card.Body>
+                         </Accordion.Collapse>
+                     </Card>
                  );
             })}
-        </div>
+        </Accordion>
     );
 };
 
