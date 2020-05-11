@@ -1,24 +1,60 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { act } from 'react-dom/test-utils';
+import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
 import { Stage } from 'react-konva';
 
 import CharacterEditorPanel from './CharacterEditorPanel';
 
+// The default export from the lodash.debounce module is the _debounce
+// function. We don't test the actual debouncing here, so mock _debounce to
+// just return the original function that's passed to it.
+jest.mock('lodash.debounce', () => {
+    return {
+        __esModule: true,
+        default: jest.fn(fn => fn)
+    };
+});
+
 describe('CharacterEditorPanel', function() {
 
-    it('should display an empty stage with the given dimensions', function() {
-        const wrapper = shallow(
-            <CharacterEditorPanel
-                width={12}
-                height={17}
-                scale={0.25}
-            />
-        );
+    it('should have an initial width and height of zero', function() {
+        const wrapper = shallow(<CharacterEditorPanel />);
 
-        expect(wrapper).to.containMatchingElement(
-            <Stage width={12} height={17} scale={{x: 0.25, y: 0.25}}></Stage>
-        );
+        expect(wrapper.find(Stage))
+            .to.have.props([ 'width', 'height', 'scale' ])
+            .deep.equal([ 0, 0, { x: 0, y: 0 } ]);
+    });
+
+    it('should fit to its container on window resize', function() {
+        const handlers = {};
+
+        // Mock window.addEventListener so we can call event listeners when we
+        // want during the test
+        window.addEventListener = jest.fn((event, cb) => {
+            handlers[event] = cb;
+        });
+
+        let wrapper;
+        act(() => {
+            wrapper = mount(<CharacterEditorPanel />);
+        });
+
+        // Set the width and height of the container
+        const container = wrapper.getDOMNode();
+        Object.defineProperty(container, 'clientWidth', { value: 500 });
+        Object.defineProperty(container, 'clientHeight', { value: 200 });
+
+        act(() => {
+            handlers.resize();
+        });
+
+        // Re-render component after the resize
+        wrapper.update();
+
+        expect(wrapper.find(Stage))
+            .to.have.props([ 'width', 'height', 'scale' ])
+            .deep.equal([ 200, 200, { x: 0.2, y: 0.2 } ]);
     });
 
 });
