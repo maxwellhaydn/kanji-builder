@@ -6,16 +6,6 @@ import { Stage } from 'react-konva';
 
 import CharacterEditorPanel from './CharacterEditorPanel';
 
-// The default export from the lodash.debounce module is the _debounce
-// function. We don't test the actual debouncing here, so mock _debounce to
-// just return the original function that's passed to it.
-jest.mock('lodash.debounce', () => {
-    return {
-        __esModule: true,
-        default: jest.fn(fn => fn)
-    };
-});
-
 describe('CharacterEditorPanel', function() {
 
     it('should have an initial width and height of zero', function() {
@@ -27,6 +17,8 @@ describe('CharacterEditorPanel', function() {
     });
 
     it('should fit to its container on window resize', function() {
+        jest.useFakeTimers();
+
         const handlers = {};
 
         // Mock window.addEventListener so we can call event listeners when we
@@ -46,7 +38,10 @@ describe('CharacterEditorPanel', function() {
         Object.defineProperty(container, 'clientHeight', { value: 200 });
 
         act(() => {
+            // Trigger a resize event and wait for debounced resize handler to
+            // finish
             handlers.resize();
+            jest.advanceTimersByTime(100);
         });
 
         // Re-render component after the resize
