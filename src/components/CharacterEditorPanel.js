@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Stage } from 'react-konva';
 import _debounce from 'lodash.debounce';
 
+import './CharacterEditorPanel.css';
+
 // Virtual dimensions of the editor, i.e. the dimensions of the coordinate space
 // you can draw on
 const VIRTUAL_WIDTH = 1000;
