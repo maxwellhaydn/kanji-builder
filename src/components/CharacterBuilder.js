@@ -11,9 +11,13 @@ import CharacterEditorPanel from './CharacterEditorPanel';
  * character.
  */
 const CharacterBuilder = ({ buildingBlocks }) => {
+    // Editor is a canvas with a virtual size of 1000x1000 pixels
+    const editorVirtualWidth = 1000;
+    const editorVirtualHeight = 1000;
     const editorContainer = useRef(null);
     const [editorWidth, setEditorWidth] = useState(0);
     const [editorHeight, setEditorHeight] = useState(0);
+    const [editorScale, setEditorScale] = useState(0);
 
     useEffect(() => {
         /**
@@ -30,8 +34,13 @@ const CharacterBuilder = ({ buildingBlocks }) => {
          *     https://konvajs.org/docs/sandbox/Responsive_Canvas.html
          */
         const fitEditorToContainer = () => {
-            setEditorWidth(editorContainer.current.clientWidth);
-            setEditorHeight(editorContainer.current.clientHeight);
+            const scale = Math.min(
+                editorContainer.current.clientWidth / editorVirtualWidth,
+                editorContainer.current.clientHeight / editorVirtualHeight
+            );
+            setEditorWidth(editorVirtualWidth * scale);
+            setEditorHeight(editorVirtualHeight * scale);
+            setEditorScale(scale);
         };
 
         // Create a debounced version of fitEditorToContainer so we don't call
@@ -44,7 +53,7 @@ const CharacterBuilder = ({ buildingBlocks }) => {
         return () => {
             window.removeEventListener('resize',handleResize);
         };
-    }, [editorWidth, editorHeight]);
+    }, [editorWidth, editorHeight, editorScale]);
 
     return (
         <div className="character-builder">
@@ -53,8 +62,7 @@ const CharacterBuilder = ({ buildingBlocks }) => {
                     <CharacterEditorPanel
                         width={editorWidth}
                         height={editorHeight}
-                        scaleX={0}
-                        scaleY={0}
+                        scale={editorScale}
                     />
                 </Col>
                 <Col xs="12" sm="4">

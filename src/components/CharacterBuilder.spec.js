@@ -76,8 +76,8 @@ describe('CharacterBuilder', function() {
                                  .first()
                                  .getDOMNode();
 
-        Object.defineProperty(container, 'clientWidth', { value: 123 });
-        Object.defineProperty(container, 'clientHeight', { value: 456 });
+        Object.defineProperty(container, 'clientWidth', { value: 500 });
+        Object.defineProperty(container, 'clientHeight', { value: 200 });
 
         act(() => {
             handlers.resize();
@@ -87,8 +87,9 @@ describe('CharacterBuilder', function() {
         wrapper.update();
 
         expect(wrapper.find(CharacterEditorPanel)).to.have.props({
-            width: 123,
-            height: 456
+            width: 200,
+            height: 200,
+            scale: 0.2
         });
     });
 
