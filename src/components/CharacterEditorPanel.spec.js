@@ -8,9 +8,17 @@ import CharacterEditorPanel from './CharacterEditorPanel';
 describe('CharacterEditorPanel', function() {
 
     it('should display an empty stage with the given dimensions', function() {
-        const wrapper = shallow(<CharacterEditorPanel width="12" height="17"/>);
+        const wrapper = shallow(
+            <CharacterEditorPanel
+                width={12}
+                height={17}
+                scale={0.25}
+            />
+        );
 
-        expect(wrapper).to.contain(<Stage width="12" height="17"></Stage>);
+        expect(wrapper).to.containMatchingElement(
+            <Stage width={12} height={17} scale={{x: 0.25, y: 0.25}}></Stage>
+        );
     });
 
 });
