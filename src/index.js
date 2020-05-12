@@ -29,8 +29,6 @@ ReactDOM.render(
         <App
             buildingBlocks={buildingBlocks}
             matches={matches}
-            editorWidth="600"
-            editorHeight="600"
         />
     </React.StrictMode>,
     document.getElementById('root')
