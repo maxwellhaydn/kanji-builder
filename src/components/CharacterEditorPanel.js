@@ -58,7 +58,7 @@ const CharacterEditorPanel = (props) => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [width, height, scale]);
+    }, [width, height, scale, handleResize]);
 
     return (
         <div className="character-editor-panel" ref={container}>
