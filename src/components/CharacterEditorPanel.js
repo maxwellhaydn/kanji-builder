@@ -49,7 +49,11 @@ const CharacterEditorPanel = (props) => {
     // Create a debounced version of fitToContainer so we don't call it
     // multiple times for a quick series of resize events
     const debounceWait = 100;
-    const [handleResize] = useDebouncedCallback(fitToContainer, debounceWait);
+    const [handleResize] = useDebouncedCallback(
+        fitToContainer,
+        debounceWait,
+        { leading: true }
+    );
 
     useEffect(() => {
         fitToContainer();
