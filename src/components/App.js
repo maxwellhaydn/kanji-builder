@@ -1,20 +1,28 @@
 import React from 'react';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import Row from 'react-bootstrap/Row';
 
+import './App.css';
 import CharacterBuilder from './CharacterBuilder';
 import MatchingCharacterList from './MatchingCharacterList';
 
-const App = ({ buildingBlocks, matches, editorWidth, editorHeight }) => {
+const App = ({ buildingBlocks, matches }) => {
     return (
-        <div className="app">
+        <Container className="app">
             <Navbar />
-            <CharacterBuilder
-                buildingBlocks={buildingBlocks}
-                editorWidth={editorWidth}
-                editorHeight={editorHeight}
-            />
-            <MatchingCharacterList matches={matches} />
-        </div>
+            <Row>
+                <Col>
+                    <CharacterBuilder buildingBlocks={buildingBlocks} />
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <MatchingCharacterList matches={matches} />
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
