@@ -1,5 +1,6 @@
 import React from 'react';
 
+import './MatchingCharacterList.css';
 import MatchingCharacter from './MatchingCharacter';
 
 /**
