@@ -1,16 +1,17 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 /**
  * A single character building block.
  */
 const CharacterBuildingBlock = ({ literal }) => {
     return (
-        <button
+        <Button
             className="character-building-block"
-            type="button"
+            variant="light"
         >
             {literal}
-        </button>
+        </Button>
     );
 };
 

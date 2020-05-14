@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
+import Button from 'react-bootstrap/Button';
 
 import CharacterBuildingBlock from './CharacterBuildingBlock';
 
@@ -11,8 +12,8 @@ describe('CharacterBuildingBlock', function() {
             <CharacterBuildingBlock literal="foo" />
         );
 
-        expect(wrapper).to.have.exactly(1).descendants('button');
-        expect(wrapper.find('button')).to.have.text('foo');
+        expect(wrapper).to.have.exactly(1).descendants('Button');
+        expect(wrapper.find('Button')).to.have.text('foo');
     });
 
 });
