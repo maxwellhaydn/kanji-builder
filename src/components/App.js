@@ -7,7 +7,9 @@ import MatchingCharacterList from './MatchingCharacterList';
 const App = ({ buildingBlocks, matches }) => {
     return (
         <div className="app">
-            <Navbar />
+            <Navbar bg="dark" variant="dark">
+                <Navbar.Brand>Kanji Builder</Navbar.Brand>
+            </Navbar>
             <CharacterBuildingBlockList buildingBlocks={buildingBlocks} />
             <MatchingCharacterList matches={matches} />
         </div>

@@ -12,8 +12,8 @@ describe('App', function() {
     it('should contain navbar, builder, and matching character list', function() {
         const wrapper = shallow(<App buildingBlocks="foo" matches="bar" />);
 
+        expect(wrapper).to.containMatchingElement(Navbar);
         expect(wrapper).to.contain([
-            <Navbar />,
             <CharacterBuildingBlockList buildingBlocks="foo" />,
             <MatchingCharacterList matches="bar" />
         ]);
