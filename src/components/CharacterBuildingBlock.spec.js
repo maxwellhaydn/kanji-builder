@@ -6,12 +6,13 @@ import CharacterBuildingBlock from './CharacterBuildingBlock';
 
 describe('CharacterBuildingBlock', function() {
 
-    it('should display an image of the building block', function() {
+    it('should display a button with the building block text', function() {
         const wrapper = shallow(
-            <CharacterBuildingBlock imageSrc="foo/bar" />
+            <CharacterBuildingBlock literal="foo" />
         );
 
-        expect(wrapper.find('img')).to.have.attr('src').equal('foo/bar');
+        expect(wrapper).to.have.exactly(1).descendants('button');
+        expect(wrapper.find('button')).to.have.text('foo');
     });
 
 });
