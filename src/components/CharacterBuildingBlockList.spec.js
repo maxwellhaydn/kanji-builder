@@ -8,7 +8,7 @@ import CharacterBuildingBlockList from './CharacterBuildingBlockList';
 
 describe('CharacterBuildingBlockList', function() {
 
-    it('should display building blocks grouped into categories', function() {
+    it('should display building blocks grouped into sorted categories', function() {
         const data = [{
             id: 1,
             category: 'Hats',
@@ -29,6 +29,14 @@ describe('CharacterBuildingBlockList', function() {
             id: 5,
             category: 'Blocks',
             literal: 'bat'
+        }, {
+            id: 6,
+            category: '80',
+            literal: 'something'
+        }, {
+            id: 7,
+            category: '9',
+            literal: 'something else'
         }];
 
         const wrapper = shallow(
@@ -36,6 +44,10 @@ describe('CharacterBuildingBlockList', function() {
         );
 
         expect(wrapper).to.contain([
+            <CharacterBuildingBlockCategory name="9" />,
+            <CharacterBuildingBlock literal="something else" />,
+            <CharacterBuildingBlockCategory name="80" />,
+            <CharacterBuildingBlock literal="something" />,
             <CharacterBuildingBlockCategory name="Blocks" />,
             <CharacterBuildingBlock literal="quux" />,
             <CharacterBuildingBlock literal="bat" />,

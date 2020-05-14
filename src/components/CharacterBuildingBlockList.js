@@ -19,7 +19,15 @@ const CharacterBuildingBlockList = ({ buildingBlocks }) => {
         buildingBlocksByCategory[category].push(buildingBlock);
     });
 
-    const categories = Object.keys(buildingBlocksByCategory).sort();
+    const categories = Object.keys(buildingBlocksByCategory);
+
+    // Sort categories numerically if they are numbers, alphabetically
+    // and case-insensitively otherwise
+    const collator = new Intl.Collator('en', {
+        numeric: true,
+        sensitivity: 'base'
+    });
+    categories.sort((a, b) => collator.compare(a, b))
 
     return (
         <div className="character-building-block-list">
