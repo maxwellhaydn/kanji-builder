@@ -4,28 +4,17 @@ import { expect } from 'chai';
 import Navbar from 'react-bootstrap/Navbar';
 
 import App from './App';
-import CharacterBuilder from './CharacterBuilder';
+import CharacterBuildingBlockList from './CharacterBuildingBlockList';
 import MatchingCharacterList from './MatchingCharacterList';
 
 describe('App', function() {
 
     it('should contain navbar, builder, and matching character list', function() {
-        const wrapper = shallow(
-            <App
-                buildingBlocks="foo"
-                matches="bar"
-                editorWidth="29"
-                editorHeight="273"
-            />
-        );
+        const wrapper = shallow(<App buildingBlocks="foo" matches="bar" />);
 
         expect(wrapper).to.contain([
             <Navbar />,
-            <CharacterBuilder
-                buildingBlocks="foo"
-                editorWidth="29"
-                editorHeight="273"
-            />,
+            <CharacterBuildingBlockList buildingBlocks="foo" />,
             <MatchingCharacterList matches="bar" />
         ]);
     });

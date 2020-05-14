@@ -1,18 +1,14 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 
-import CharacterBuilder from './CharacterBuilder';
+import CharacterBuildingBlockList from './CharacterBuildingBlockList';
 import MatchingCharacterList from './MatchingCharacterList';
 
-const App = ({ buildingBlocks, matches, editorWidth, editorHeight }) => {
+const App = ({ buildingBlocks, matches }) => {
     return (
         <div className="app">
             <Navbar />
-            <CharacterBuilder
-                buildingBlocks={buildingBlocks}
-                editorWidth={editorWidth}
-                editorHeight={editorHeight}
-            />
+            <CharacterBuildingBlockList buildingBlocks={buildingBlocks} />
             <MatchingCharacterList matches={matches} />
         </div>
     );
