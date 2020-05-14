@@ -27,7 +27,7 @@ const CharacterBuildingBlockList = ({ buildingBlocks }) => {
                  const items = buildingBlocksByCategory[category].map(item =>
                      <CharacterBuildingBlock
                          key={item.id}
-                         imageSrc={item.image}
+                         literal={item.literal}
                      />
                  );
 

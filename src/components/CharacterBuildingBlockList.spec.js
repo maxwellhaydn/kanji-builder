@@ -12,23 +12,23 @@ describe('CharacterBuildingBlockList', function() {
         const data = [{
             id: 1,
             category: 'Hats',
-            image: 'foo'
+            literal: 'foo'
         }, {
             id: 2,
             category: 'Feet',
-            image: 'bar'
+            literal: 'bar'
         }, {
             id: 3,
             category: 'Hats',
-            image: 'baz'
+            literal: 'baz'
         }, {
             id: 4,
             category: 'Blocks',
-            image: 'quux'
+            literal: 'quux'
         }, {
             id: 5,
             category: 'Blocks',
-            image: 'bat'
+            literal: 'bat'
         }];
 
         const wrapper = shallow(
@@ -37,13 +37,13 @@ describe('CharacterBuildingBlockList', function() {
 
         expect(wrapper).to.contain([
             <CharacterBuildingBlockCategory name="Blocks" />,
-            <CharacterBuildingBlock imageSrc="quux" />,
-            <CharacterBuildingBlock imageSrc="bat" />,
+            <CharacterBuildingBlock literal="quux" />,
+            <CharacterBuildingBlock literal="bat" />,
             <CharacterBuildingBlockCategory name="Feet" />,
-            <CharacterBuildingBlock imageSrc="bar" />,
+            <CharacterBuildingBlock literal="bar" />,
             <CharacterBuildingBlockCategory name="Hats" />,
-            <CharacterBuildingBlock imageSrc="foo" />,
-            <CharacterBuildingBlock imageSrc="baz" />
+            <CharacterBuildingBlock literal="foo" />,
+            <CharacterBuildingBlock literal="baz" />
         ]);
     });
 
