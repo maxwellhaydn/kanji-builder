@@ -12,8 +12,8 @@ const MatchingCharacterList = ({ matches }) => {
             {matches.map(item => {
                  return (
                      <MatchingCharacter
-                         key={item.id}
-                         literal={item.literal}
+                         key={item}
+                         value={item}
                      />
                  );
             })}
