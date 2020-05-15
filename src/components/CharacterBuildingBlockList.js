@@ -36,7 +36,7 @@ const CharacterBuildingBlockList = ({ buildingBlocks, onClick }) => {
                      <CharacterBuildingBlock
                          key={item.id}
                          literal={item.literal}
-                         onClick={onClick}
+                         onClick={() => onClick(item.literal)}
                      />
                  );
 
