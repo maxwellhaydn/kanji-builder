@@ -8,14 +8,9 @@ import MatchingCharacter from './MatchingCharacter';
 const MatchingCharacterList = ({ matches }) => {
     return (
         <div className="matching-character-list">
-            <span className="num-matches">{matches.length} matches</span>
+            <span className="num-matches">{matches.count()} matches</span>
             {matches.map(item => {
-                 return (
-                     <MatchingCharacter
-                         key={item}
-                         value={item}
-                     />
-                 );
+                 return <MatchingCharacter key={item} value={item} />;
             })}
         </div>
     );
