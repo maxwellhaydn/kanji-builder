@@ -59,4 +59,28 @@ describe('CharacterBuildingBlockList', function() {
         ]);
     });
 
+    it('should attach the supplied click handler', function() {
+        const data = [{
+            id: 1,
+            category: 'Hats',
+            literal: 'foo'
+        }, {
+            id: 2,
+            category: 'Feet',
+            literal: 'bar'
+        }];
+        const onClick = jest.fn();
+
+        const wrapper = shallow(
+            <CharacterBuildingBlockList
+                buildingBlocks={data}
+                onClick={onClick}
+            />
+        );
+
+        wrapper.findWhere(c => c.prop('literal') === 'foo').simulate('click');
+
+        expect(onClick).to.have.beenCalledTimes(1);
+    });
+
 });

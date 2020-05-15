@@ -6,7 +6,7 @@ import CharacterBuildingBlockCategory from './CharacterBuildingBlockCategory';
 /**
  * A list of character building blocks divided into categories.
  */
-const CharacterBuildingBlockList = ({ buildingBlocks }) => {
+const CharacterBuildingBlockList = ({ buildingBlocks, onClick }) => {
     // Organize building blocks by category so we can display them together
     const buildingBlocksByCategory = {};
     buildingBlocks.forEach(buildingBlock => {
@@ -36,6 +36,7 @@ const CharacterBuildingBlockList = ({ buildingBlocks }) => {
                      <CharacterBuildingBlock
                          key={item.id}
                          literal={item.literal}
+                         onClick={onClick}
                      />
                  );
 
