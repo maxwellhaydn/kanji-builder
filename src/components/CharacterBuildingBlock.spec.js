@@ -16,4 +16,15 @@ describe('CharacterBuildingBlock', function() {
         expect(wrapper.find('Button')).to.have.text('foo');
     });
 
+    it('should attach the supplied click handler', function() {
+        const onClick = jest.fn();
+        const wrapper = shallow(
+            <CharacterBuildingBlock literal="foo" onClick={onClick} />
+        );
+
+        wrapper.simulate('click');
+
+        expect(onClick).to.have.beenCalledTimes(1);
+    });
+
 });
