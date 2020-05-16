@@ -1,53 +1,33 @@
 import React from 'react';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 
-import CharacterBuildingBlock from './CharacterBuildingBlock';
-import CharacterBuildingBlockCategory from './CharacterBuildingBlockCategory';
+import buildingBlocks from '../data/building-blocks.json';
 
 /**
  * A list of character building blocks divided into categories.
  */
-const CharacterBuildingBlockList = ({ buildingBlocks, onClick }) => {
-    // Organize building blocks by category so we can display them together
-    const buildingBlocksByCategory = {};
-    buildingBlocks.forEach(buildingBlock => {
-        const category = buildingBlock.category;
-
-        if (!buildingBlocksByCategory.hasOwnProperty(category)) {
-            buildingBlocksByCategory[category] = [];
-        }
-
-        buildingBlocksByCategory[category].push(buildingBlock);
-    });
-
-    const categories = Object.keys(buildingBlocksByCategory);
-
-    // Sort categories numerically if they are numbers, alphabetically
-    // and case-insensitively otherwise
-    const collator = new Intl.Collator('en', {
-        numeric: true,
-        sensitivity: 'base'
-    });
-    categories.sort((a, b) => collator.compare(a, b))
-
+const CharacterBuildingBlockList = ({ onChange, selected }) => {
     return (
-        <div className="character-building-block-list">
-            {categories.map(category => {
-                 const items = buildingBlocksByCategory[category].map(item =>
-                     <CharacterBuildingBlock
-                         key={item.id}
-                         literal={item.literal}
-                         onClick={() => onClick(item.literal)}
-                     />
-                 );
-
+        <ToggleButtonGroup
+            className="character-building-block-list"
+            type="checkbox"
+            value={selected}
+            onChange={onChange}
+        >
+            {buildingBlocks.map(item => {
                  return (
-                     <React.Fragment key={category}>
-                         <CharacterBuildingBlockCategory name={category} />
-                         {items}
-                     </React.Fragment>
+                     <ToggleButton
+                         className="character-building-block"
+                         key={item.literal}
+                         value={item.literal}
+                         variant="light"
+                     >
+                         {item.literal}
+                     </ToggleButton>
                  );
             })}
-        </div>
+        </ToggleButtonGroup>
     );
 };
 
