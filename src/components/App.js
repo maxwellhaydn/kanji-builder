@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import CharacterBuilder from './CharacterBuilder';
 import CharacterDetail from './CharacterDetail';
+import './App.css';
 
 const App = (props) => {
     return (
