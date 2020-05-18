@@ -16,6 +16,12 @@ const CharacterDetail = ({ character }) => {
                     return <li key={index}>{reading}</li>;
                 })}
             </ul>
+            <h2>Meanings</h2>
+            <ul className="character-meanings">
+                {details[character].meanings.map((meaning, index) => {
+                    return <li key={index}>{meaning}</li>;
+                })}
+            </ul>
         </div>
     );
 };
