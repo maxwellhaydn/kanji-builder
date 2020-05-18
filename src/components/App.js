@@ -22,6 +22,9 @@ const App = (props) => {
                     <CharacterBuilder />
                 </Route>
             </Switch>
+            <div className="footer">
+                This site uses the <a href="http://www.edrdg.org/krad/kradinf.html">RADKFILE/KRADFILE</a> and <a href="http://www.edrdg.org/wiki/index.php/KANJIDIC_Project">KANJIDIC</a> dictionary files. These files are the property of the <a href="http://www.edrdg.org/">Electronic Dictionary Research and Development Group</a>, and are used in conformance with the Group's <a href="http://www.edrdg.org/edrdg/licence.html">licence</a>.
+            </div>
         </div>
     );
 };

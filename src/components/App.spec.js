@@ -67,9 +67,45 @@ describe('App', function() {
 
     });
 
+    describe('footer', function() {
+
+        it('should display license info', function() {
+            const wrapper = shallow(<App />);
+            const footer = wrapper.find('.footer');
+
+            expect(footer).to.have.text(
+                'This site uses the RADKFILE/KRADFILE and KANJIDIC ' +
+                'dictionary files. These files are the property of the ' +
+                'Electronic Dictionary Research and Development Group, and ' +
+                "are used in conformance with the Group's licence."
+            );
+
+            expect(footer).to.contain(
+                <a
+                    href="http://www.edrdg.org/krad/kradinf.html"
+                >
+                    RADKFILE/KRADFILE
+                </a>
+            );
+
+            expect(footer).to.contain(
+                <a
+                    href="http://www.edrdg.org/wiki/index.php/KANJIDIC_Project"
+                >
+                    KANJIDIC
+                </a>
+            );
+
+            expect(footer).to.contain(
+                <a href="http://www.edrdg.org/edrdg/licence.html">licence</a>
+            );
+        });
+
+    });
+
     describe('character builder view', function() {
 
-        it('should contain a navbar and character builder', function() {
+        it('should contain a navbar, footer, and character builder', function() {
             const wrapper = mount(
                 <MemoryRouter initialEntries={['/']}>
                     <App />
@@ -78,13 +114,14 @@ describe('App', function() {
 
             expect(wrapper).to.contain.exactly(1).descendants(Navbar);
             expect(wrapper).to.containMatchingElement(<CharacterBuilder />);
+            expect(wrapper).to.contain.exactly(1).descendants('.footer');
         });
 
     });
 
     describe('character detail view', function() {
 
-        it('should contain a navbar and character details', function() {
+        it('should contain a navbar, footer, and character details', function() {
             const wrapper = mount(
                 <MemoryRouter initialEntries={['/detail/foo']}>
                     <App />
@@ -95,6 +132,7 @@ describe('App', function() {
             expect(wrapper).to.containMatchingElement(
                 <CharacterDetail character="foo" />
             );
+            expect(wrapper).to.contain.exactly(1).descendants('.footer');
         });
 
     });
