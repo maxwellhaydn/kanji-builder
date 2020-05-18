@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
 import Navbar from 'react-bootstrap/Navbar';
 
@@ -55,6 +55,18 @@ jest.mock('../data/character-details.json', () => ({
 
 describe('App', function() {
 
+    describe('navbar', function() {
+
+        it('should display the site brand', function() {
+            const wrapper = shallow(<App />);
+
+            expect(wrapper.find(Navbar)).to.contain(
+                <Navbar.Brand>Kanji Builder</Navbar.Brand>
+            );
+        });
+
+    });
+
     describe('character builder view', function() {
 
         it('should contain a navbar and character builder', function() {
@@ -65,9 +77,6 @@ describe('App', function() {
             );
 
             expect(wrapper).to.contain.exactly(1).descendants(Navbar);
-            expect(wrapper.find(Navbar)).to.contain(
-                <Navbar.Brand>Kanji Builder</Navbar.Brand>
-            );
             expect(wrapper).to.containMatchingElement(<CharacterBuilder />);
         });
 
