@@ -8,6 +8,48 @@ import App from './App';
 import CharacterBuilder from './CharacterBuilder';
 import CharacterDetail from './CharacterDetail';
 
+jest.mock('../data/building-blocks.json', () => [{
+    id: 1,
+    category: 'Hats',
+    literal: 'foo'
+}, {
+    id: 2,
+    category: 'Feet',
+    literal: 'bar'
+}, {
+    id: 3,
+    category: 'Hats',
+    literal: 'baz'
+}, {
+    id: 4,
+    category: 'Blocks',
+    literal: 'quux'
+}, {
+    id: 5,
+    category: 'Blocks',
+    literal: 'bat'
+}]);
+
+jest.mock('../data/lookup.json', () => ({
+    foo: ['a', 'c', 'd'],
+    bar: ['b', 'c', 'e'],
+    baz: ['a'],
+    quux: ['b', 'e'],
+    bat: ['c']
+}));
+
+jest.mock('../data/character-details.json', () => ({
+    foo: {
+        readings: ['foo1', 'foo2', 'foo3']
+    },
+    bar: {
+        readings: ['bar1', 'bar2', 'bar3']
+    },
+    baz: {
+        readings: ['baz1', 'baz2', 'baz3']
+    }
+}));
+
 describe('App', function() {
 
     describe('character builder view', function() {
