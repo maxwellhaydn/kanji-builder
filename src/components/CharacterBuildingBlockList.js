@@ -2,6 +2,7 @@ import React from 'react';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 
+import './CharacterBuildingBlockList.css';
 import buildingBlocks from '../data/building-blocks.json';
 
 // Group building blocks by category
@@ -39,7 +40,7 @@ categories.forEach(category => {
 const CharacterBuildingBlockList = ({ onChange, selected }) => {
     return (
         <ToggleButtonGroup
-            className="character-building-block-list flex-wrap"
+            className="character-building-block-list"
             type="checkbox"
             value={selected}
             onChange={onChange}
