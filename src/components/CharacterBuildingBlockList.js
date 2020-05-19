@@ -10,7 +10,7 @@ import buildingBlocks from '../data/building-blocks.json';
 const CharacterBuildingBlockList = ({ onChange, selected }) => {
     return (
         <ToggleButtonGroup
-            className="character-building-block-list"
+            className="character-building-block-list flex-wrap"
             type="checkbox"
             value={selected}
             onChange={onChange}
