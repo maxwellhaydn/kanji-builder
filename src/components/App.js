@@ -9,11 +9,11 @@ import './App.css';
 
 const App = (props) => {
     return (
-        <div className="app">
+        <div className="app d-flex flex-column">
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand>Kanji Builder</Navbar.Brand>
             </Navbar>
-            <Container fluid>
+            <Container fluid className="flex-fill">
                 <Switch>
                     <Route
                         path="/detail/:character"
