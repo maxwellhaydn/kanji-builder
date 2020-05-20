@@ -13,7 +13,7 @@
 }
 
 .character-readings li::after {
-    content: ", ";
+    content: "、";
 }
 
 .character-readings li:last-child::after {
