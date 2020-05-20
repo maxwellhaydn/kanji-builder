@@ -6,6 +6,7 @@
 .character-readings {
     list-style: none;
     padding: 0;
+    font-size: 1.5em;
 }
 
 .character-readings li {
@@ -23,6 +24,7 @@
 .character-meanings {
     list-style: none;
     padding: 0;
+    font-size: 1.5em;
 }
 
 .character-meanings li {
