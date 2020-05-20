@@ -14,3 +14,7 @@ body {
     height: 10vh;
     background-color: #f5f5f5;
 }
+
+.footer p:last-child {
+    margin-bottom: 0;
+}
