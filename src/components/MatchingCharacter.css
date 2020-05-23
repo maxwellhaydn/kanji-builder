@@ -1,0 +1,7 @@
+.matching-character {
+    font-size: 3em;
+    display: block;
+    margin: 0 auto;
+    min-width: 2em;
+    max-width: 2em;
+}

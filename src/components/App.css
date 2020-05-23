@@ -3,6 +3,7 @@ body, .app {
 }
 
 .container-fluid {
+    padding-bottom: 1em;
     padding-top: 1em;
 }
 

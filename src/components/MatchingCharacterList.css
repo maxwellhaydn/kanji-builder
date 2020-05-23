@@ -1,17 +1,24 @@
-.matching-character {
-    border: 1px solid black;
-    display: block;
-    width: 100%;
+.num-matches {
+    margin: 0.5em 0;
 }
 
-.slick-prev:before {
-  content: "<";
-  color: #212529;
-  font-size: 3rem;
+.slick-list {
+    flex: auto;
 }
 
-.slick-next:before {
-  content: ">";
-  color: #212529;
-  font-size: 3rem;
+.slick-prev, .slick-next {
+    position: static;
+    flex: initial;
+}
+
+.slick-prev {
+    margin-right: 20px;
+}
+
+.slick-next {
+    margin-left: 20px;
+}
+
+.slick-prev::before, .slick-next::before {
+    color: #343a40;
 }
