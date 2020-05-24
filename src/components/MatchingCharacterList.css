@@ -1,0 +1,24 @@
+.num-matches {
+    margin: 0.5em 0;
+}
+
+.slick-list {
+    flex: auto;
+}
+
+.slick-prev, .slick-next {
+    position: static;
+    flex: initial;
+}
+
+.slick-prev {
+    margin-right: 20px;
+}
+
+.slick-next {
+    margin-left: 20px;
+}
+
+.slick-prev::before, .slick-next::before {
+    color: #343a40;
+}

@@ -1,0 +1,40 @@
+.character-literal > svg > text {
+    dominant-baseline: central;
+    text-anchor: middle;
+}
+
+.character-readings {
+    list-style: none;
+    padding: 0;
+    font-size: 1.5em;
+}
+
+.character-readings li {
+    display: inline;
+}
+
+.character-readings li::after {
+    content: "、";
+}
+
+.character-readings li:last-child::after {
+    content: "";
+}
+
+.character-meanings {
+    list-style: none;
+    padding: 0;
+    font-size: 1.5em;
+}
+
+.character-meanings li {
+    display: inline;
+}
+
+.character-meanings li::after {
+    content: ", ";
+}
+
+.character-meanings li:last-child::after {
+    content: "";
+}
