@@ -29,7 +29,7 @@ class TestEdrdg(unittest.TestCase):
         with patch('edrdg.open', mock_open(read_data=mock_data)) as m:
             radkfile = parse_radkfile()
             m.assert_called_once_with('radkfile')
-            self.assertDictEqual(radkfile, {
+            self.assertEqual(radkfile, {
                 '一': {
                     'id': 1,
                     'strokes': 1,
@@ -81,7 +81,7 @@ class TestEdrdg(unittest.TestCase):
         with patch('edrdg.open', mock_open(read_data=mock_data)) as m:
             kradfile = parse_kradfile()
             m.assert_called_once_with('kradfile')
-            self.assertDictEqual(kradfile, {
+            self.assertEqual(kradfile, {
                 '亜': {'｜', '一', '口'},
                 '緯': {'口', '糸', '幺', '小', '韋'},
                 '一': {'一'},
@@ -128,7 +128,7 @@ class TestEdrdg(unittest.TestCase):
         )
 
         kanjidic = parse_kanjidic(path=StringIO(initial_value=mock_data))
-        self.assertDictEqual(kanjidic, {
+        self.assertEqual(kanjidic, {
             '亜': {'grade': 8},
             '水': {'grade': 1},
             '唖': {}
