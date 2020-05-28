@@ -1,8 +1,9 @@
+from io import StringIO
 import textwrap
 import unittest
 from unittest.mock import mock_open, patch
 
-from edrdg import parse_radkfile, parse_kradfile
+from edrdg import parse_radkfile, parse_kradfile, parse_kanjidic
 
 class TestEdrdg(unittest.TestCase):
 
@@ -90,6 +91,52 @@ class TestEdrdg(unittest.TestCase):
         with patch('edrdg.open', mock_open(read_data=mock_data)) as m:
             kradfile = parse_kradfile(path='foo')
             m.assert_called_once_with('foo')
+
+    def test_parse_kanjidic(self):
+        mock_data = textwrap.dedent(
+            """\
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE kanjidic2 [
+                <!-- documentation -->
+            ]>
+            <kanjidic2>
+            <!-- Entry for Kanji: 亜 -->
+            <character>
+            <literal>亜</literal>
+            <misc>
+            <grade>8</grade>
+            <stroke_count>7</stroke_count>
+            </misc>
+            </character>
+            <!-- Entry for Kanji: 水 -->
+            <character>
+            <literal>水</literal>
+            <misc>
+            <grade>1</grade>
+            <stroke_count>4</stroke_count>
+            </misc>
+            </character>
+            <!-- Entry for Kanji: 唖 -->
+            <character>
+            <literal>唖</literal>
+            <misc>
+            <stroke_count>10</stroke_count>
+            </misc>
+            </character>
+            </kanjidic2>
+            """
+        )
+
+        kanjidic = parse_kanjidic(path=StringIO(initial_value=mock_data))
+        self.assertDictEqual(kanjidic, {
+            '亜': {'grade': 8},
+            '水': {'grade': 1},
+            '唖': {}
+        })
+
+        with patch('edrdg.ET', autospec=True) as m:
+            kanjidic = parse_kanjidic()
+            m.parse.assert_called_once_with('kanjidic2.xml')
 
 if __name__ == '__main__':
     unittest.main()

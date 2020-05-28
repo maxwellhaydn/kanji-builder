@@ -3,6 +3,8 @@ Functions for parsing dictionary files from the Electronic Dictionary Research
 and Development Group (EDRDG), like KANJIDIC and RADKFILE/KRADFILE.
 """
 
+import xml.etree.ElementTree as ET
+
 def parse_radkfile(path='radkfile'):
     """Parse the supplied radkfile.
 
@@ -73,5 +75,37 @@ def parse_kradfile(path='kradfile'):
 
             character, elements = line.split(' : ', 1)
             data[character] = set(elements.split())
+
+    return data
+
+def parse_kanjidic(path='kanjidic2.xml'):
+    """Parse the supplied kanjidic.
+
+    Keyword arguments:
+    path -- the path to the file (default 'kanjidic2.xml')
+
+    Returns:
+    A dictionary with characters as keys and dictionaries containing
+    information about each character as values, e.g.
+
+        {
+            '亜': {'grade': 8},
+            '水': {'grade': 1},
+            '唖': {},
+            ...
+        }
+    """
+
+    data = {}
+    root = ET.parse(path).getroot()
+
+    for character in root.findall('character'):
+        literal = character.find('literal').text
+        data.setdefault(literal, {})
+
+        grade = character.find('./misc/grade')
+
+        if grade is not None:
+            data[literal]['grade'] = int(grade.text)
 
     return data
