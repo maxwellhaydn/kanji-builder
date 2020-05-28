@@ -2,29 +2,30 @@ import textwrap
 import unittest
 from unittest.mock import mock_open, patch
 
-from edrdg import parse_radkfile
+from edrdg import parse_radkfile, parse_kradfile
 
-class TestRadkfile(unittest.TestCase):
-    mock_data = textwrap.dedent(
-        """\
-        # comment
-        # another comment
-        $ 一 1
-        亜唖阿姶悪芦
-        或袷夷椅畏異
-        何可夏寡歌河
-        # comment
-        $ 化 2 js01
-        伊位依偉荏液億俺化
-        $ 刈 2 3331
-        劃割刈苅刊帰刑型
-        $ 鼓 13
-        鼓瞽皷鼕鼔
-        """
-    )
+class TestEdrdg(unittest.TestCase):
 
     def test_parse_radkfile(self):
-        with patch('edrdg.open', mock_open(read_data=self.mock_data)) as m:
+        mock_data = textwrap.dedent(
+            """\
+            # comment
+            # another comment
+            $ 一 1
+            亜唖阿姶悪芦
+            或袷夷椅畏異
+            何可夏寡歌河
+            # comment
+            $ 化 2 js01
+            伊位依偉荏液億俺化
+            $ 刈 2 3331
+            劃割刈苅刊帰刑型
+            $ 鼓 13
+            鼓瞽皷鼕鼔
+            """
+        )
+
+        with patch('edrdg.open', mock_open(read_data=mock_data)) as m:
             radkfile = parse_radkfile()
             m.assert_called_once_with('radkfile')
             self.assertDictEqual(radkfile, {
@@ -59,8 +60,35 @@ class TestRadkfile(unittest.TestCase):
                 }
             })
 
-        with patch('edrdg.open', mock_open(read_data=self.mock_data)) as m:
+        with patch('edrdg.open', mock_open(read_data=mock_data)) as m:
             radkfile = parse_radkfile(path='foo')
+            m.assert_called_once_with('foo')
+
+    def test_parse_kradfile(self):
+        mock_data = textwrap.dedent(
+            """\
+            # comment
+            # another comment
+            亜 : ｜ 一 口
+            緯 : 口 糸 幺 小 韋
+            # comment
+            一 : 一
+            齲 : ノ 止 歯 虫 米 冂 凵 禹
+            """
+        )
+
+        with patch('edrdg.open', mock_open(read_data=mock_data)) as m:
+            kradfile = parse_kradfile()
+            m.assert_called_once_with('kradfile')
+            self.assertDictEqual(kradfile, {
+                '亜': {'｜', '一', '口'},
+                '緯': {'口', '糸', '幺', '小', '韋'},
+                '一': {'一'},
+                '齲': {'ノ', '止', '歯', '虫', '米', '冂', '凵', '禹'}
+            })
+
+        with patch('edrdg.open', mock_open(read_data=mock_data)) as m:
+            kradfile = parse_kradfile(path='foo')
             m.assert_called_once_with('foo')
 
 if __name__ == '__main__':

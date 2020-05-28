@@ -45,3 +45,33 @@ def parse_radkfile(path='radkfile'):
                 data[element]['characters'].update(set(line.strip()))
 
     return data
+
+def parse_kradfile(path='kradfile'):
+    """Parse the supplied kradfile.
+
+    Keyword arguments:
+    path -- the path to the file (default 'kradfile')
+
+    Returns:
+    A dictionary with characters as keys and sets of their component
+    radicals/elements as values, e.g.
+
+        {
+            '亜': {'｜', '一', '口'},
+            '緯': {'口', '糸', '幺', '小', '韋'},
+            '一': {'一'},
+            ...
+        }
+    """
+
+    data = {}
+
+    with open(path) as f:
+        for line in f:
+            if line.startswith('#'):
+                continue
+
+            character, elements = line.split(' : ', 1)
+            data[character] = set(elements.split())
+
+    return data
